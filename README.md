@@ -29,7 +29,7 @@ ACCESS_TOKEN_SECRET = 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'
 pip install -r requirements.txt
 ```
 
-### Ejecutar
+### Ejecución
 
 Para comenzar solo entra al sitio.
 
@@ -37,7 +37,7 @@ Para detener entra a la dirección:
 ```
 /detener
 ```
-### Personalizar
+### Personalización
 
 Las fotos se encuentran en la carpeta
 ```
@@ -58,3 +58,10 @@ Para cambiar el intérvalo de tiempo hay que modificar la línea:
 más info en:
 https://schedule.readthedocs.io/en/stable/
 
+###  Publicación
+
+Para publicar en Heroku hay que seguir estos pasos:
+https://devcenter.heroku.com/articles/getting-started-with-python#introduction
+
+Las apps en cuentas gratuitas de Heroku se duermen si no hay actividad, para evitarlo se puede automatizar un monitoreo en:
+https://uptimerobot.com
