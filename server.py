@@ -10,6 +10,7 @@ from credentials import CONSUMER_KEY, CONSUMER_SECRET, ACCESS_TOKEN, ACCESS_TOKE
 executor = ThreadPoolExecutor(max_workers=1)
 
 count = 1 # contador para los nombres de las fotos
+continuar = False
 
 def crear_api(): #acceso a twitter
     auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
@@ -20,6 +21,7 @@ def crear_api(): #acceso a twitter
 
 def tweet_image():
     global count
+    global continuar
     api = crear_api()
     message = '#JaneBirkin'
     filename = 'static/fotos/janebirkin' + str(count) + '.jpg'
@@ -31,7 +33,7 @@ def tweet_image():
 def diario(): #corre la funcion tweet_image() cada dia
     #schedule.every( 60 ).minutes.do( tweet_image ).run()
     schedule.every().day.at("10:00").do( tweet_image ).run()
-    while True:
+    while continuar:
         schedule.run_pending()
         time.sleep(1)
 
@@ -39,13 +41,19 @@ app = Flask(__name__, static_url_path='', static_folder='static')
 
 @app.route('/')
 def run():
-    executor.submit(diario)
-    return 'running'
+    global continuar
+    if(continuar == False):
+        continuar = True
+        executor.submit(diario)
+        return 'iniciando'
+        
+    return 'continua corriendo'
     
     
 @app.route('/detener')
 def detener():
-    
+    global continuar
+    continuar = False
     schedule.cancel_job(tweet_image)
     schedule.clear()
     
