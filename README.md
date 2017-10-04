@@ -1,9 +1,10 @@
-# @birkin100pre
+# Jane Birkin Twitter Bot
 
 Bot de twitter que publica una imagen cada día usando tweepy
 
 ![Jane Birkin](janebirkin.jpg)
 
+@birkin100pre
 
 ### Configuración
 
